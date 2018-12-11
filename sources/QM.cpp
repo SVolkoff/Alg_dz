@@ -3,8 +3,8 @@
 int main(int argc, char *argv[]) 
 {
 	std::string str1; 
-	std::ifstream input("argv[1]");
-	std::ofstream output("argv[2]"); 
+	std::ifstream input(argv[1]);
+	std::ofstream output(argv[2]); 
 	if (!input.is_open())
 		output << "Не найден входной файл"; 
 	if (!input.is_open())
