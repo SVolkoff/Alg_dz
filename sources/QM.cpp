@@ -1,14 +1,18 @@
 #include"QM.hpp"
 
-int main(int argc, char *argv[]) 
+
+int main(int argc, char *argv[])
 {
 	std::string str1; 
 	std::ifstream input(argv[1]);
-	std::ofstream output(argv[2]); 
-	if (!input.is_open())
-		output << "Не найден входной файл"; 
-	if (!input.is_open())
+	std::ofstream output(argv[2]);
+	if (!output.is_open())
 		return 0;
+	if (!input.is_open())
+	{
+		output << "Не найден входной файл";
+		return 0;
+	}
 	std::getline(input, str1);
 	int len = str1.size();
 	if (len > 1073741824)
@@ -31,5 +35,7 @@ int main(int argc, char *argv[])
 		output << func.QuineMcClaskey(str1); 
 		return 0;
 	}
-	else output << "Неправильный размер вектора значений"; input.close(); output.close(); return 0;
+	else output << "Неправильный размер вектора значений"; input.close(); output.close();
+	return 0;
+
 }
