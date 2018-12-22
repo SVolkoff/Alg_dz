@@ -1,6 +1,5 @@
 #include"QM.hpp"
 
-
 int main(int argc, char *argv[])
 {
 	std::string str1; 
@@ -14,10 +13,10 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 	std::getline(input, str1);
-	int len = str1.size();
+	size_t len = str1.size();
 	if (len > 1073741824)
 		output << "Слишком большое число переменных"; 
-	bool correctimput = true; 
+	bool correctlen = true; 
 	if (!len)
 	{ 
 		output << "Входной файл пуст"; 
@@ -25,17 +24,21 @@ int main(int argc, char *argv[])
 	} 
 	while (len > 1) 
 	{
-		if ((len % 2) == 1) correctimput = false; 
+		if ((len % 2) == 1) correctlen = false;
 		len >>= 1;
 		variables++;
 	} 
-	if (correctimput) 
+	if (correctlen)
 	{
 		BooleanFunction func;
-		output << func.QuineMcClaskey(str1); 
-		return 0;
+		 func.MinimizeDNF(str1);
+		 if (str1.size())
+			 output << str1;
+		 else
+			 output << "Неправильно введен вектор значений";
 	}
-	else output << "Неправильный размер вектора значений"; input.close(); output.close();
+	else output << "Неправильный размер вектора значений"; 
+	input.close();
+	output.close();
 	return 0;
-
 }
